@@ -1,3 +1,11 @@
-<h1>
-  {{title}}
-</h1>
+<div [ngStyle]="backgroundStyle">
+  <div class="container">
+    <div class="row">
+      <!-- Music Playlist Component -->
+      <music-playlist [songs]="songs" (playEvent)="playEvent($event)"></music-playlist>
+
+      <!-- Music Player Component -->
+      <music-player (playpause)="handlePlayPause()" (stop)="handleStop()" *ngIf="currentSong" [currentSong]="currentSong"></music-player>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.song{
+    display: flex;
+}
+
+.song-image{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.song-details{
+    margin-left: 10px;
+}

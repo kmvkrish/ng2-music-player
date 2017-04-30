@@ -1,0 +1,20 @@
+<div class="col-sm-8 col-md-7">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let song of songs">
+      <div class="song">
+        <img class="img-responsive song-image" [src] = "song.cover_image"/>
+        <div class="song-details">
+          <h5 class="song-title">
+            {{song.song}}
+          </h5>
+          <p>
+            <i class="fa fa-group">&nbsp;</i> {{song.artists}}
+          </p>
+          <a href="javascript:" (click)="play(song)">
+            <i class="fa fa-play">&nbsp;</i> Play
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

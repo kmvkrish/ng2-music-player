@@ -1,0 +1,15 @@
+.music-progress{
+    display: flex;
+    margin: 10px 10px;
+    width: 100%;
+    background: transparent;
+}
+
+.progress-bar{
+    width: 420px;
+    height: 4px;
+    background: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 8px;
+}
