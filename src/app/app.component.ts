@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
     this.musicPlayerService.play(song.url);
     this.backgroundStyle = this.composeBackgroundStyle(song.cover_image);
     this.currentSongIndex = this.songs.indexOf(song);
-    console.log(this.currentSongIndex, this.currentSong);
   }
 
   composeBackgroundStyle(image) {
@@ -59,9 +58,13 @@ export class AppComponent implements OnInit {
     this.musicPlayerService.audio.currentTime = 0;
     this.currentTime = 0;
 
-    if(this.currentSongIndex < this.songs.length){
-      this.playEvent(this.songs[this.currentSongIndex + 1]);
+    if(this.currentSongIndex < (this.songs.length - 1)){
+      this.currentSongIndex++;
+    }else{
+      this.currentSongIndex = 0;
     }
+
+    this.playEvent(this.songs[this.currentSongIndex]);
   }
 
   handleTimeUpdate(e): void {
