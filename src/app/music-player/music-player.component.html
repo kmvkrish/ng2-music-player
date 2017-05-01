@@ -1,25 +1,25 @@
 <div class="col-sm-4 col-md-5">
-  <div class="music-player-container affix">
-    <div class="song-details">
-      <h4 class="song-title">{{currentSong.song}}</h4>
-      <p>
-        <i class="fa fa-group">&nbsp;</i>{{currentSong.artists}}
-      </p>
-      <div class="music-controls">
-        <button class="previous" (click)="playPrevious()">
-          <i class="fa fa-step-backward fa-2x"></i>
-        </button>
-        <button class="playpause" (click)="playpause()" *ngIf="paused">
-          <i class="fa fa-play-circle-o fa-3x"></i>
-        </button>
-        <button class="playpause" (click)="playpause()" *ngIf="!paused">
-          <i class="fa fa-pause-circle-o fa-3x"></i>
-        </button>
-        <button class="next" (click)="playNext()">
-          <i class="fa fa-step-forward fa-2x"></i>
-        </button>
-      </div>
+    <div class="music-player-container affix">
+        <div class="song-details">
+            <h4 class="song-title">{{currentSong.song}}</h4>
+            <p>
+                <i class="fa fa-group">&nbsp;</i>{{currentSong.artists}}
+            </p>
+            <div class="music-controls">
+                <button class="previous" (click)="playPrevious()">
+                  	<i class="fa fa-step-backward fa-2x"></i>
+                </button>
+                <button class="playpause" (click)="playpause()" *ngIf="paused">
+                  	<i class="fa fa-play-circle-o fa-3x"></i>
+                </button>
+                <button class="playpause" (click)="playpause()" *ngIf="!paused">
+                  	<i class="fa fa-pause-circle-o fa-3x"></i>
+                </button>
+                <button class="next" (click)="playNext()">
+                  	<i class="fa fa-step-forward fa-2x"></i>
+                </button>
+            </div>
+        </div>
+        <music-progress [currentTime]="currentTime" [totalTime]="totalTime"></music-progress>
     </div>
-    <music-progress></music-progress>
-  </div>
 </div>

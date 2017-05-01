@@ -8,34 +8,18 @@ import { MusicPlayerService } from '../shared/music-player.service';
 })
 export class MusicProgressComponent implements OnInit {
 
-  currentTime;
-  totalTime;
+  @Input() currentTime;
+  @Input() totalTime;
 
   constructor(private musicPlayerService: MusicPlayerService) { }
 
   ngOnInit() {
-    this.musicPlayerService.audio.onended = this.handleEnded.bind(this);
-    this.musicPlayerService.audio.ontimeupdate = this.handleTimeUpdate.bind(this);
-  }
-
-  handleEnded(e):void{ }
-
-  handleTimeUpdate(e):void{
-    const currentTime = this.musicPlayerService.audio.currentTime;
-    const totalTime = this.musicPlayerService.audio.duration;
-
-    if(currentTime){
-      this.currentTime = currentTime;
-    }
-    if(totalTime){
-      this.totalTime = totalTime;
-    }
-
+    
   }
 
   getTime(time){
-    var seconds = Math.floor(time);
-    var minutes = Math.floor(seconds / 60);
+    var minutes = Math.floor(time / 60);
+    var seconds = Math.floor(time - (minutes*60));
 
     if(minutes <= 9){
       if(seconds < 10){

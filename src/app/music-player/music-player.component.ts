@@ -12,6 +12,9 @@ export class MusicPlayerComponent implements OnInit {
   @Input() currentSong;
   @Input() paused;
 
+  @Input() currentTime;
+  @Input() totalTime;
+
   constructor(private musicPlayerService: MusicPlayerService) { }
 
   ngOnInit() {

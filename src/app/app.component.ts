@@ -14,37 +14,67 @@ export class AppComponent implements OnInit {
   backgroundStyle;
   songs: any[];
 
-  currentSong:any;
+  currentSong: any;
   paused: boolean;
+
+  currentSongIndex:number = 0;
 
   totalTime;
   currentTime;
 
   constructor(private musicPlaylistService: MusicPlaylistService,
-  private musicPlayerService: MusicPlayerService){
+    private musicPlayerService: MusicPlayerService) {
 
   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.musicPlaylistService.getPlaylist().subscribe(songs => this.songs = songs);
+
+    this.musicPlayerService.audio.onended = this.handleEnded.bind(this);
+    this.musicPlayerService.audio.ontimeupdate = this.handleTimeUpdate.bind(this);
+
   }
 
-  playEvent(song):void{
+  playEvent(song): void {
     this.currentSong = song;
     this.paused = false;
     this.musicPlayerService.play(song.url);
     this.backgroundStyle = this.composeBackgroundStyle(song.cover_image);
-
+    this.currentSongIndex = this.songs.indexOf(song);
+    console.log(this.currentSongIndex, this.currentSong);
   }
 
-  composeBackgroundStyle(image){
+  composeBackgroundStyle(image) {
     return {
-      backgroundSize:'cover',
+      backgroundSize: 'cover',
       backgroundImage: `linear-gradient(
         rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0.7)
       ), url(${this.currentSong.cover_image})`
     };
+  }
+
+  handleEnded(e): void {
+    this.musicPlayerService.audio.pause();
+    this.musicPlayerService.audio.currentTime = 0;
+    this.currentTime = 0;
+
+    if(this.currentSongIndex < this.songs.length){
+      this.playEvent(this.songs[this.currentSongIndex + 1]);
+    }
+  }
+
+  handleTimeUpdate(e): void {
+    const currentTime = this.musicPlayerService.audio.currentTime;
+    const totalTime = this.musicPlayerService.audio.duration;
+
+    if (currentTime) {
+      this.currentTime = currentTime;
+    }
+    if (totalTime) {
+      this.totalTime = totalTime;
+    }
+
   }
 
 }
